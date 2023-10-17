@@ -133,9 +133,9 @@ formatted_data = cleaned_data(PLAYERS)  ## cleaned data is now stored in formatt
 
 
 def balanced_team(b_team):  # a function to evenly balance the players across the team
-    P = b_team[0:5]
+    P = b_team[0:6]
     B = b_team[6:12]
-    W = b_team[13:18]
+    W = b_team[12:]
     return P, B, W
 
 
@@ -147,7 +147,7 @@ def stats(team):  # a function to analyse the statistics of the player
     count_inexperience = 0
     for user in team:
         player_name = user["name"]
-        guardian = user["guardians"]
+        guardian = " , ".join(user["guardians"])
         height = user["height"]
         player_name_list.append(player_name)
         guardian_list.append(guardian)
@@ -164,8 +164,12 @@ def stats(team):  # a function to analyse the statistics of the player
     print(f"Number of experience: {number_of_experience}")
     print(f"Number of inexperience: {number_of_inexperience}")
     print(f"Average height: {average_height}")
-    print(player_name_list)
-    print(guardian_list)
+    print("\n")
+    print("Players on team:")
+    print(",".join(player_name_list))
+    print("\n")
+    print("Guardians:")
+    print(",".join(guardian_list))
 
 
 def main():
